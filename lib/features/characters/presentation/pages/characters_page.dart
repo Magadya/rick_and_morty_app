@@ -29,6 +29,7 @@ class _CharactersPageState extends State<CharactersPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(LocaleKey.characterPagePageTitle.tr()),
+        centerTitle: true,
         actions: [
           IconButton(
             icon: const Icon(Icons.settings),

@@ -42,7 +42,10 @@ class _LanguageSettingsPageState extends State<LanguageSettingsPage> {
         leading: BackButton(
           onPressed: () => context.go('/'),
         ),
-        title: Text(LocaleKey.settingsPagePageTitle.tr()),
+        centerTitle: true,
+        title: Text(
+          LocaleKey.settingsPagePageTitle.tr(),
+        ),
       ),
       body: Observer(
         builder: (context) {
