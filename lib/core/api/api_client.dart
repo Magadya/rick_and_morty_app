@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:dio/dio.dart';
+import 'package:rick_and_morty_app/core/logger/logger_service.dart';
 
 class ApiResult<T> {
   final T? data;
@@ -13,33 +14,35 @@ class ApiResult<T> {
 }
 
 class ApiLogger {
+  static final DevLogger _logger = DevLogger('ApiLogger');
+
   static void logRequest(String method, String endpoint, {
     Map<String, dynamic>? headers,
     Map<String, dynamic>? queryParams,
     dynamic data,
   }) {
-    print('┌── API Request ──────────────────');
-    print('│ Method: $method');
-    print('│ Endpoint: $endpoint');
-    if (headers != null) print('│ Headers: $headers');
-    if (queryParams != null) print('│ Query Parameters: $queryParams');
-    if (data != null) print('│ Data: $data');
-    print('└────────────────────────────────');
+    _logger.info('┌── API Request ──────────────────');
+    _logger.info('│ Method: $method');
+    _logger.info('│ Endpoint: $endpoint');
+    if (headers != null) _logger.info('│ Headers: $headers');
+    if (queryParams != null) _logger.info('│ Query Parameters: $queryParams');
+    if (data != null) _logger.info('│ Data: $data');
+    _logger.info('└────────────────────────────────');
   }
 
   static void logResponse(Response response, Duration duration) {
-    print('┌── API Response ─────────────────');
-    print('│ Status Code: ${response.statusCode}');
-    print('│ Duration: ${duration.inMilliseconds}ms');
-    print('│ Response Data: ${response.data}');
-    print('└────────────────────────────────');
+    _logger.info('┌── API Response ─────────────────');
+    _logger.info('│ Status Code: ${response.statusCode}');
+    _logger.info('│ Duration: ${duration.inMilliseconds}ms');
+    _logger.info('│ Response Data: ${response.data}');
+    _logger.info('└────────────────────────────────');
   }
 
   static void logError(String message, dynamic error) {
-    print('┌── API Error ────────────────────');
-    print('│ Message: $message');
-    print('│ Error: $error');
-    print('└────────────────────────────────');
+    _logger.info('┌── API Error ────────────────────');
+    _logger.info('│ Message: $message');
+    _logger.info('│ Error: $error');
+    _logger.info('└────────────────────────────────');
   }
 }
 

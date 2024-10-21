@@ -19,7 +19,7 @@ class CharacterIconHelper {
       case CharacterGender.female:
         return AssetIconPath.genderFemale24.path;
       case CharacterGender.male:
-        return AssetIconPath.genderMale24.path;;
+        return AssetIconPath.genderMale24.path;
       default:
         return AssetIconPath.genderUnknown24.path;
     }

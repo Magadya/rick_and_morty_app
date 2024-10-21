@@ -8,10 +8,8 @@ import '../../domain/entities/character_model.dart';
 import '../stores/character_details_store.dart';
 import '../../../../core/di/injection_container.dart';
 import '../utils/character_icon_helper.dart';
-import '../widgets/character_grid_item.dart';
 import '../widgets/charcter_info_row.dart';
 
-// CharacterDetailsPage widget
 class CharacterDetailsPage extends StatefulWidget {
   final int characterId;
 

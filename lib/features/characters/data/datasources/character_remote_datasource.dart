@@ -39,7 +39,7 @@ class CharacterRemoteDataSourceImpl implements CharacterRemoteDataSource {
           message: result.error ?? 'Failed to fetch characters',
         );
       }
-    } catch (e, stackTrace) {
+    } catch (e) {
       throw DataSourceException(
         message: 'An error occurred while fetching characters',
         error: e,
@@ -116,7 +116,6 @@ class CharacterRemoteDataSourceImpl implements CharacterRemoteDataSource {
   }
 }
 
-// Custom exception class
 class DataSourceException implements Exception {
   final String message;
   final dynamic error;

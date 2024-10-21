@@ -65,13 +65,10 @@ class CharacterRepositoryImpl implements CharacterRepository {
   @override
   Future<Either<Failure, CharacterModel>> getCharacterDetails(int id) async {
     try {
-      // Use the existing getCharacterById method from remote data source
       final character = await remoteDataSource.getCharacterById(id);
 
-      // Get liked status from local storage
       final likedIds = await localDataSource.getLikedCharacterIds();
 
-      // Combine remote data with local liked status
       final characterWithLikeStatus = character.copyWith(
           isLiked: likedIds.contains(character.id)
       );

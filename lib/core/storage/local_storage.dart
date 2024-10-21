@@ -6,6 +6,8 @@ class LocalStorage {
   LocalStorage(this._prefs);
 
   static const String _likedCharactersKey = 'liked_characters';
+  static const String _languageCodeKey = 'language_code';
+  static const String _countryCodeKey = 'country_code';
 
   Future<Set<int>> getLikedCharacters() async {
     final likedCharacters = _prefs.getStringList(_likedCharactersKey) ?? [];
@@ -25,5 +27,18 @@ class LocalStorage {
       _likedCharactersKey,
       likedCharacters.map((id) => id.toString()).toList(),
     );
+  }
+
+  Future<void> setLanguage(String languageCode, String countryCode) async {
+    await _prefs.setString(_languageCodeKey, languageCode);
+    await _prefs.setString(_countryCodeKey, countryCode);
+  }
+
+  String getLanguageCode() {
+    return _prefs.getString(_languageCodeKey) ?? 'en';
+  }
+
+  String getCountryCode() {
+    return _prefs.getString(_countryCodeKey) ?? 'US';
   }
 }

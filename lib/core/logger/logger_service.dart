@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 
 import 'package:logger/logger.dart';
-import 'package:rick_and_morty_app/core/services/file_system_service.dart';
+import 'package:rick_and_morty_app/core/services/file_system/file_system_service.dart';
 
 class AppLogFilter extends LogFilter {
   @override
@@ -99,7 +99,7 @@ class DevLogger {
     return Logger(
       printer: PrettyPrinter(
         colors: false,
-        printTime: false,
+
         noBoxingByDefault: true,
         printEmojis: true,
       ),

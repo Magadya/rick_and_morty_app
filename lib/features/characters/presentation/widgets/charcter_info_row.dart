@@ -29,7 +29,10 @@ class CharacterInfoRow extends StatelessWidget {
             ),
             child: SvgPicture.asset(
               iconPath,
-              color: context.colors.background,
+              colorFilter: ColorFilter.mode(
+                context.colors.background,
+                BlendMode.srcIn,
+              ),
               fit: BoxFit.none,
             ),
           ),

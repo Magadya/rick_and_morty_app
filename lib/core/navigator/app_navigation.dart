@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:rick_and_morty_app/core/navigator/routes.dart';
 import '../../features/characters/presentation/pages/character_details_page.dart';
 import '../../features/characters/presentation/pages/characters_page.dart';
+import '../../features/settings/presentation/pages/language_settings_pages.dart';
 class AppNavigation {
   static final AppNavigation _instance = AppNavigation._internal();
 
@@ -16,16 +18,16 @@ class AppNavigation {
   late final GoRouter appRouter = GoRouter(
     navigatorKey: globalRouteKey,
     initialLocation: '/',
-    debugLogDiagnostics: true, // Helpful for debugging
+    debugLogDiagnostics: true,
     routes: [
       GoRoute(
-        name: 'home',
-        path: '/',
+        name: RouteName.home.name,
+        path: RouteName.home.path,
         builder: (context, state) => const CharactersPage(),
       ),
       GoRoute(
-        name: 'character',
-        path: '/character/:id',
+        name: RouteName.character.name,
+        path: RouteName.character.path,
         builder: (context, state) {
           final String? characterId = state.pathParameters['id'];
           if (characterId == null || int.tryParse(characterId) == null) {
@@ -36,6 +38,11 @@ class AppNavigation {
           final int id = int.parse(characterId);
           return CharacterDetailsPage(characterId: id);
         },
+      ),
+      GoRoute(
+        name: RouteName.languageSettings.name,
+        path: RouteName.languageSettings.path,
+        builder: (context, state) => const LanguageSettingsPage(),
       ),
     ],
     errorBuilder: (context, state) {

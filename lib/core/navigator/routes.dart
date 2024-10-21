@@ -1,6 +1,7 @@
 enum RouteName {
   home,
-  character;
+  character,
+  languageSettings;
 
   String get path {
     switch (this) {
@@ -8,6 +9,8 @@ enum RouteName {
         return '/';
       case RouteName.character:
         return '/character/:id';
+      case RouteName.languageSettings:
+        return '/settings/language';
     }
   }
 
@@ -17,6 +20,8 @@ enum RouteName {
         return 'home';
       case RouteName.character:
         return 'character';
+      case RouteName.languageSettings:
+        return 'languageSettings';
     }
   }
 }
