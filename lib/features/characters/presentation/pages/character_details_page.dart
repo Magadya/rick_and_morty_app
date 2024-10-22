@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:rick_and_morty_app/config/extentsions/string.dart';
 import 'package:rick_and_morty_app/config/helpers/assets.dart';
 import 'package:rick_and_morty_app/config/theme/app_theme.dart';
+import 'package:rick_and_morty_app/core/extentsions/string.dart';
 import '../../domain/entities/character_model.dart';
 import '../stores/character_details_store.dart';
 import '../../../../core/di/injection_container.dart';
