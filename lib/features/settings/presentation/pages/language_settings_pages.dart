@@ -3,9 +3,9 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:go_router/go_router.dart';
+import 'package:rick_and_morty_app/core/services/i18n/locale_key.g.dart';
 
 import '../../../../core/di/injection_container.dart';
-import '../../../../core/services/i18n/locale_key.g.dart';
 import '../../domain/entities/language_entity.dart';
 import '../stores/language_store.dart';
 

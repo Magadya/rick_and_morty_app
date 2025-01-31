@@ -2,8 +2,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:go_router/go_router.dart';
-import 'package:rick_and_morty_app/core/services/i18n/locale_key.g.dart';
 import '../../../../core/navigator/routes.dart';
+import '../../../../core/services/i18n/locale_key.g.dart';
 import '../stores/character_store.dart';
 import '../widgets/character_grid_item.dart';
 import '../../../../core/di/injection_container.dart';
@@ -70,12 +70,13 @@ class _CharactersPageState extends State<CharactersPage> {
             itemBuilder: (context, index) {
               final character = _store.characters[index];
               return CharacterGridItem(
-                  character: character,
-                  onLikeTap: () => _store.toggleLike(character.id),
-                  onTap: () => context.pushNamed(
-                        'character',
-                        pathParameters: {'id': character.id.toString()},
-                      ));
+                character: character,
+                onLikeTap: () => _store.toggleLike(character.id),
+                onTap: () => context.pushNamed(
+                  'character',
+                  pathParameters: {'id': character.id.toString()},
+                ),
+              );
             },
           );
         },

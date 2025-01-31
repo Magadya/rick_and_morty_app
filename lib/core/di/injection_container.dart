@@ -1,11 +1,11 @@
 import 'package:get_it/get_it.dart';
 import 'package:rick_and_morty_app/features/characters/presentation/stores/character_store.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../features/characters/data/datasources/character_remote_datasource.dart';
 import '../../features/characters/presentation/stores/character_details_store.dart';
 import '../../features/settings/presentation/stores/language_store.dart';
 import '../api/api_client.dart';
 
-import '../../features/characters/data/datasources/character_remote_datasource.dart';
 import '../../features/characters/data/datasources/character_local_datasource.dart';
 import '../../features/characters/data/repositories/character_repository_impl.dart';
 import '../../features/characters/domain/repositories/character_repository.dart';
@@ -27,10 +27,10 @@ Future<void> initializeDependencies() async {
 
   // Data sources
   getIt.registerLazySingleton<CharacterRemoteDataSource>(
-    () => CharacterRemoteDataSourceImpl(apiClient: getIt()),
+    () => CharacterRemoteDataSource(apiClient: getIt()),
   );
   getIt.registerLazySingleton<CharacterLocalDataSource>(
-    () => CharacterLocalDataSourceImpl(sharedPreferences: getIt()),
+    () => CharacterLocalDataSource(prefs: getIt()),
   );
 
   // Repository

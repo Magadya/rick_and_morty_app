@@ -1,11 +1,12 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'character_model.freezed.dart';
+
 part 'character_model.g.dart';
 
 T enumFromString<T>(Iterable<T> values, String value, T unknown) {
   return values.firstWhere(
-        (element) => element.toString().split('.').last.toLowerCase() == value.toLowerCase(),
+    (element) => element.toString().split('.').last.toLowerCase() == value.toLowerCase(),
     orElse: () => unknown,
   );
 }
@@ -67,8 +68,7 @@ class CharacterModel with _$CharacterModel {
     @Default(false) bool isLiked,
   }) = _CharacterModel;
 
-  factory CharacterModel.fromJson(Map<String, dynamic> json) =>
-      _$CharacterModelFromJson(json);
+  factory CharacterModel.fromJson(Map<String, dynamic> json) => _$CharacterModelFromJson(json);
 }
 
 @freezed
@@ -78,7 +78,5 @@ class LocationShort with _$LocationShort {
     required String url,
   }) = _LocationShort;
 
-  factory LocationShort.fromJson(Map<String, dynamic> json) =>
-      _$LocationShortFromJson(json);
+  factory LocationShort.fromJson(Map<String, dynamic> json) => _$LocationShortFromJson(json);
 }
-

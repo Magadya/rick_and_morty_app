@@ -2,6 +2,8 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:rick_and_morty_app/core/logger/logger_service.dart';
 
+import 'api_logger_interceptor.dart';
+
 class ApiResult<T> {
   final T? data;
   final String? error;
@@ -57,6 +59,14 @@ class ApiClient {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
     };
+
+    // Add logger interceptor
+    _dio.interceptors.add(ApiLoggerInterceptor(
+      logRequestBody: true,
+      logResponseBody: true,
+      logRequestHeaders: true,
+      logResponseHeaders: true,
+    ));
   }
 
   Future<ApiResult<T>> _performRequest<T>({
@@ -67,17 +77,6 @@ class ApiClient {
     Map<String, dynamic>? headers,
   }) async {
     try {
-      final stopwatch = Stopwatch()..start();
-
-      // Log request
-      ApiLogger.logRequest(
-        method,
-        endpoint,
-        headers: headers,
-        queryParams: queryParameters,
-        data: data,
-      );
-
       if (headers != null) {
         _dio.options.headers.addAll(headers);
       }
@@ -89,24 +88,16 @@ class ApiClient {
         data: data,
       );
 
-      stopwatch.stop();
-      ApiLogger.logResponse(response, stopwatch.elapsed);
-
       return ApiResult.success(response.data as T, response.statusCode);
     } on SocketException {
-      const message = 'No internet connection';
-      ApiLogger.logError(message, 'SocketException');
-      return ApiResult.failure(message);
+      return ApiResult.failure('No internet connection');
     } on DioException catch (e) {
-      final message = _handleDioError(e);
-      ApiLogger.logError(message, e);
-      return ApiResult.failure(message);
+      return ApiResult.failure(_handleDioError(e));
     } catch (e) {
-      const message = 'An unexpected error occurred';
-      ApiLogger.logError(message, e);
-      return ApiResult.failure(message);
+      return ApiResult.failure('An unexpected error occurred');
     }
   }
+
 
   Future<Response> _executeRequest(
       String method,
